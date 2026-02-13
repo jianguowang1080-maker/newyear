@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>春节快乐 - 给特别的你</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        .animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .firework-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .spark {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+
+        .spark:nth-child(1) {
+            left: 20%;
+            top: 30%;
+            background: #ff6b6b;
+            animation-delay: 0s;
+        }
+
+        .spark:nth-child(2) {
+            left: 80%;
+            top: 20%;
+            background: #feca57;
+            animation-delay: 0.5s;
+        }
+
+        .spark:nth-child(3) {
+            left: 50%;
+            top: 60%;
+            background: #48dbfb;
+            animation-delay: 1s;
+        }
+
+        .spark:nth-child(4) {
+            left: 30%;
+            top: 70%;
+            background: #ff9ff3;
+            animation-delay: 1.5s;
+        }
+
+        .spark:nth-child(5) {
+            left: 70%;
+            top: 40%;
+            background: #54a0ff;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        .text-animation {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            gap: 20px;
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .char {
+            display: inline-block;
+            animation: bounce 1.5s infinite;
+        }
+
+        .char:nth-child(1) { animation-delay: 0s; }
+        .char:nth-child(2) { animation-delay: 0.2s; }
+        .char:nth-child(3) { animation-delay: 0.4s; }
+        .char:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .spring-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .element {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: floatElement 3s infinite ease-in-out;
+        }
+
+        .element:nth-child(1) {
+            left: 10%;
+            top: 15%;
+            animation-delay: 0s;
+        }
+
+        .element:nth-child(2) {
+            right: 10%;
+            top: 15%;
+            animation-delay: 0.5s;
+        }
+
+        .element:nth-child(3) {
+            left: 15%;
+            bottom: 20%;
+            animation-delay: 1s;
+        }
+
+        .element:nth-child(4) {
+            right: 15%;
+            bottom: 20%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes floatElement {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+        .blessing-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.8s forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .blessing-text {
+            font-size: 1.3rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .interactive-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            color: white;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .firework {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: explode 1s forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .lucky-draw {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .lucky-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .lucky-result {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 20px 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .countdown {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .countdown-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+
+        .time-value {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            animation: float 3s forwards;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .blessing-text {
+                font-size: 1.1rem;
+            }
+            
+            .time-unit {
+                min-width: 60px;
+                padding: 10px 15px;
+            }
+            
+            .time-value {
+                font-size: 1.5rem;
+            }
+
+            .text-animation {
+                font-size: 2.5rem;
+                gap: 10px;
+            }
+
+            .element {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🧧 春节快乐 🧧</h1>
+        </div>
+
+        <div class="video-container">
+            <div class="animation-container">
+                <div class="firework-animation">
+                    <div class="spark"></div>
+                    <div class="spark"></div>
+                    <div class="spark"></div>
+                    <div class="spark"></div>
+                    <div class="spark"></div>
+                </div>
+                <div class="text-animation">
+                    <span class="char">春</span>
+                    <span class="char">节</span>
+                    <span class="char">快</span>
+                    <span class="char">乐</span>
+                </div>
+                <div class="spring-elements">
+                    <div class="element">🧧</div>
+                    <div class="element">🏮</div>
+                    <div class="element">🎆</div>
+                    <div class="element">🎊</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="blessing-card">
+            <p class="blessing-text">
+                亲爱的，春节快乐！💕<br><br>
+                🌸 愿我们的相遇如春花般绚烂<br>
+                💕 愿每个春节都有你在我身边<br>
+                🏮 愿我们携手走过每一个春夏秋冬<br>
+                ❤️ 愿你永远是我心中最美的风景<br><br>
+                有你真好，爱你！
+            </p>
+            
+            <div class="interactive-buttons">
+                <button class="btn btn-primary" onclick="createFirework(event)">🎆 放烟花</button>
+                <button class="btn btn-secondary" onclick="showRandomBlessing()">🎁 抽情话</button>
+                <button class="btn btn-gold" onclick="createHearts()">❤️ 送爱心</button>
+            </div>
+        </div>
+
+        <div class="lucky-draw">
+            <h2 class="lucky-title">🎯 幸运大抽奖</h2>
+            <div class="lucky-result" id="luckyResult">点击按钮抽奖</div>
+            <button class="btn btn-primary" onclick="luckyDraw()">开始抽奖</button>
+        </div>
+
+        <div class="countdown">
+            <h2 class="countdown-title">💕 我们相识的时间</h2>
+            <div class="countdown-timer">
+                <div class="time-unit">
+                    <span class="time-value" id="days">365</span>
+                    <span class="time-label">天</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="hours">0</span>
+                    <span class="time-label">时</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="minutes">0</span>
+                    <span class="time-label">分</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="seconds">0</span>
+                    <span class="time-label">秒</span>
+                </div>
+            </div>
+            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">💝 每一秒都值得珍惜</p>
+        </div>
+
+        </div>
+    </div>
+
+    <script>
+        const blessings = [
+            '你是我春节最美的风景',
+            '有你的春节才完整',
+            '想和你一起看烟花',
+            '你是我心中永远的春天',
+            '春节快乐，我的宝贝',
+            '愿我们的爱情长长久久',
+            '你是我的春节限定美好',
+            '想和你过每一个春节',
+            '你是我最想守护的人',
+            '春节有你，真好'
+        ];
+
+        const luckyPrizes = [
+            '💑 永远在一起',
+            '💕 一个大大的拥抱',
+            '🌹 一束玫瑰花',
+            '💋 甜蜜的吻',
+            '❤️ 永远爱你',
+            '🎆 一起看烟花',
+            '🏮 共度春节',
+            '💝 永恒的爱',
+            '🌸 春节限定浪漫',
+            '💑 幸福美满'
+        ];
+
+        function createFirework(event) {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = event.clientX + 'px';
+            firework.style.top = event.clientY + 'px';
+            document.body.appendChild(firework);
+
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffa500', '#ff69b4'];
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (Math.PI * 2 * i) / 30;
+                const distance = 50 + Math.random() * 100;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                
+                firework.appendChild(particle);
+            }
+
+            setTimeout(() => {
+                document.body.removeChild(firework);
+            }, 1000);
+        }
+
+        function showRandomBlessing() {
+            const randomBlessing = blessings[Math.floor(Math.random() * blessings.length)];
+            alert('🎉 ' + randomBlessing);
+        }
+
+        function createHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝'];
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDuration = (2 + Math.random() * 2) + 's';
+                    container.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        container.removeChild(heart);
+                    }, 4000);
+                }, i * 200);
+            }
+        }
+
+        function luckyDraw() {
+            const result = document.getElementById('luckyResult');
+            let count = 0;
+            const maxCount = 20;
+            
+            const interval = setInterval(() => {
+                result.textContent = luckyPrizes[Math.floor(Math.random() * luckyPrizes.length)];
+                count++;
+                
+                if (count >= maxCount) {
+                    clearInterval(interval);
+                    const finalPrize = luckyPrizes[Math.floor(Math.random() * luckyPrizes.length)];
+                    result.textContent = finalPrize;
+                    createFirework({ clientX: window.innerWidth / 2, clientY: window.innerHeight / 2 });
+                }
+            }, 100);
+        }
+
+        function updateCountdown() {
+            const startDate = new Date('2025-12-19');
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
